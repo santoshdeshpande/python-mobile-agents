@@ -15,13 +15,14 @@ MOBILE_OS_FAMILIES = (
     'Android',
     'iOS',
     'Windows Phone OS',
+    'Windows Phone',
     'Bada',
     'Generic OS'
 )
 
 TABLET_DEVICE_FAMILIES = (
     'iPad',
-    'Blackberry Playbook',
+    'BlackBerry Playbook',
     'Kindle',
     'Kindle Fire'
 )
@@ -30,11 +31,12 @@ TOUCH_CAPABLE_OS_FAMILIES = (
     'iOS',
     'Android',
     'Windows Phone OS',
+    'Windows Phone',
     'Windows RT',
 )
 
 TOUCH_CAPABLE_DEVICE_FAMILIES = (
-    'Blackberry Playbook',
+    'BlackBerry Playbook',
     'Kindle Fire',
 )
 
@@ -136,7 +138,7 @@ class UserAgent(object):
             return True
         if self.os.family == 'BlackBerry OS' and self.device.family != 'Blackberry Playbook':
             return True
-        if self.os.family in MOBILE_OS_FAMILIES:
+        if self.os.family in MOBILE_OS_FAMILIES and not self.is_tablet:
             return True
         # TODO: remove after https://github.com/tobie/ua-parser/issues/126 is closed
         if 'J2ME' in self.ua_string or 'MIDP' in self.ua_string:
